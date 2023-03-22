@@ -40,9 +40,31 @@ Stage: run
 %runscript
     #!/bin/bash
 
-    pypy3 /planner/fast-downward.py "$@"
+    set -euo pipefail
+
+    DOMAINFILE="$1"
+    PROBLEMFILE="$2"
+    PLANFILE="$3"
+
+    pypy3 /planner/fast-downward.py \
+        --plan-file "$PLANFILE" \
+        --alias "seq-opt-scorpion-2023" \
+        --overall-time-limit 30m \
+        "$DOMAINFILE" \
+        "$PROBLEMFILE"
 
 %labels
-    Name        Scorpion
-    Description Classical planning system with state-of-the-art cost partitioning algorithms
-    Authors     Jendrik Seipp <jendrik.seipp@liu.se>
+Name        Scorpion 2023
+Description Saturated cost partitioning over abstraction heuristics.
+Authors     Jendrik Seipp <jendrik.seipp@liu.se>
+License     GPL 3
+Tracks      optimal
+SupportsDerivedPredicates                       no
+SupportsUniversallyQuantifiedPreconditions      yes
+SupportsExistentiallyQuantifiedPreconditions    yes
+SupportsUniversallyQuantifiedEffects            yes
+SupportsNegativePreconditions                   yes
+SupportsEqualityPreconditions                   yes
+SupportsInequalityPreconditions                 yes
+SupportsConditionalEffects                      yes
+SupportsImplyPreconditions                      yes
