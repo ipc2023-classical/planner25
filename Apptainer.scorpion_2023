@@ -47,9 +47,11 @@ Stage: run
     PLANFILE="$3"
 
     pypy3 /planner/fast-downward.py \
-        --plan-file "$PLANFILE" \
-        --alias "seq-opt-scorpion-2023" \
         --overall-time-limit 30m \
+        --transform-task preprocess-h2 \
+        --transform-task-options h2_time_limit,300 \
+        --alias seq-opt-scorpion-2023 \
+        --plan-file "$PLANFILE" \
         "$DOMAINFILE" \
         "$PROBLEMFILE"
 
@@ -59,7 +61,7 @@ Description Saturated cost partitioning over abstraction heuristics.
 Authors     Jendrik Seipp <jendrik.seipp@liu.se>
 License     GPL 3
 Tracks      optimal
-SupportsDerivedPredicates                       no
+SupportsDerivedPredicates                       yes
 SupportsUniversallyQuantifiedPreconditions      yes
 SupportsExistentiallyQuantifiedPreconditions    yes
 SupportsUniversallyQuantifiedEffects            yes
