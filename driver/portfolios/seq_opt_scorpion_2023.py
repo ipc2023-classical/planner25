@@ -13,7 +13,7 @@ CONFIGS_COND_EFFS = [
 
 CONFIGS_AXIOMS = [
     # scorpion:astar-blind
-    (1, ['scorpion', '--search', 'astar(blind())']),
+    (1, ['--search', 'astar(blind())']),
 ]
 
 
